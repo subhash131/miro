@@ -1,6 +1,7 @@
 "use client";
 import { useOrganizationList } from "@clerk/clerk-react";
 import React from "react";
+import Item from "./item";
 
 const List = () => {
   const { userMemberships } = useOrganizationList({
@@ -11,8 +12,8 @@ const List = () => {
   if (!userMemberships.data?.length) return null;
   return (
     <ul className="space-y-4">
-      {userMemberships.data.map((mem) => {
-        return <p key={mem.id}>{mem.organization.name}</p>;
+      {userMemberships.data.map(({ organization: { id, imageUrl, name } }) => {
+        return <Item key={id} id={id} imageUrl={imageUrl} name={name} />;
       })}
     </ul>
   );
