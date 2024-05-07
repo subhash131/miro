@@ -4,6 +4,7 @@ import { useApiMutation } from "@/hooks/use-api-mutation";
 import { useOrganization } from "@clerk/clerk-react";
 import Image from "next/image";
 import React from "react";
+import { toast } from "sonner";
 
 const EmptyBoards = () => {
   const { organization } = useOrganization();
@@ -13,7 +14,15 @@ const EmptyBoards = () => {
     create({
       orgId: organization.id,
       title: "undefined",
-    });
+    })
+      .then((id) => {
+        console.log("id: ", id);
+        toast.success("Board created");
+        //   TODO: Redirect
+      })
+      .catch(() => {
+        toast.error("Failed to create a Board");
+      });
   };
   return (
     <div className="h-full flex flex-col items-center justify-center">
