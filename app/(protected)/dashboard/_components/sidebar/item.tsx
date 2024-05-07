@@ -1,5 +1,6 @@
 "use client";
 
+import Hint from "@/components/hint";
 import { cn } from "@/lib/utils";
 import { useOrganization, useOrganizationList } from "@clerk/clerk-react";
 import Image from "next/image";
@@ -24,16 +25,24 @@ const Item = ({ id, imageUrl, name }: ItemProps) => {
 
   return (
     <div className="aspect-square relative">
-      <Image
-        alt={name}
-        src={imageUrl}
-        fill
-        onClick={onClick}
-        className={cn(
-          "rounded-md cursor-pointer opacity-75 hover:opacity-100 transition",
-          `${isActive && "opacity-100"}`
-        )}
-      />
+      <Hint
+        label={name}
+        side="right"
+        align="start"
+        sideOffset={18}
+        alignOffset={4}
+      >
+        <Image
+          alt={name}
+          src={imageUrl}
+          fill
+          onClick={onClick}
+          className={cn(
+            "rounded-md cursor-pointer opacity-75 hover:opacity-100 transition",
+            `${isActive && "opacity-100"}`
+          )}
+        />
+      </Hint>
     </div>
   );
 };
