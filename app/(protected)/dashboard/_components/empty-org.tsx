@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
-import CreateOrganizationComponent from "./create-organization";
+import { CreateOrganizationComponent } from "./manage-organization";
 
 const EmptyOrg = () => {
   return (
