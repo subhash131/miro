@@ -18,10 +18,8 @@ const EmptyOrg = () => {
           <DialogTrigger asChild>
             <Button size="lg">Create Organization</Button>
           </DialogTrigger>
-          <DialogContent className="p-0 bg-transparent border-none max-w-[480px] ">
-            <div className="absolute w-full h-full left-0 top-0 grid place-content-center pointer-events-none">
-              <CreateOrganizationComponent />
-            </div>
+          <DialogContent className="p-0 bg-transparent border-none w-fit h-fit absolute top-20 left-96 grid place-content-center">
+            <CreateOrganizationComponent />
           </DialogContent>
         </Dialog>
       </div>
