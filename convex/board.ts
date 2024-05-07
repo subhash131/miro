@@ -18,7 +18,7 @@ export const create = mutation({
       orgId: args.orgId,
       authorId: identity.subject,
       authorName: identity.name!,
-      imageUrl: "/placeholder/1.svg",
+      imageUrl: "/placeholders/1.svg",
     });
 
     return board;

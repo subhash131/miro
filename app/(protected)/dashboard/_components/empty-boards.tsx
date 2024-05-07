@@ -13,7 +13,7 @@ const EmptyBoards = () => {
     if (!organization) return;
     create({
       orgId: organization.id,
-      title: "undefined",
+      title: "Untitled",
     })
       .then((id) => {
         console.log("id: ", id);
