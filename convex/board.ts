@@ -32,10 +32,23 @@ export const remove = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (identity) {
+    if (!identity) {
       throw new Error("Unauthorized");
     }
     // TODO: Delete favorite relation
+    const userId = identity.subject;
+
+    const existingFavorite = await ctx.db
+      .query("userFavorites")
+      .withIndex("by_user_board", (q) =>
+        q.eq("userId", userId).eq("boardId", args.id)
+      )
+      .unique();
+
+    if (existingFavorite) {
+      await ctx.db.delete(existingFavorite._id);
+    }
+
     await ctx.db.delete(args.id);
   },
 });
@@ -57,7 +70,7 @@ export const update = mutation({
     if (title.length > 60) {
       throw new Error("Title cannot be longer than 60 characters");
     }
-    // TODO: Delete favorite relation
+
     const board = await ctx.db.patch(args.id, { title });
     return board;
   },
@@ -77,8 +90,8 @@ export const favorites = mutation({
 
     const existingFavorite = await ctx.db
       .query("userFavorites")
-      .withIndex("by_user_board_org", (q) =>
-        q.eq("userId", userId).eq("orgId", args.orgId).eq("boardId", args.id)
+      .withIndex("by_user_board", (q) =>
+        q.eq("userId", userId).eq("boardId", args.id)
       )
       .unique();
     console.log("args.orgId: ", args.orgId);
