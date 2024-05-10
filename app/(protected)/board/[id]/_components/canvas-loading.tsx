@@ -1,5 +1,5 @@
+"use client";
 import React from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Loader } from "lucide-react";
 import Info from "./info";
 import Participants from "./participants";
