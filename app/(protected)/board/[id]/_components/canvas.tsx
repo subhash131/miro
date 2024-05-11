@@ -24,6 +24,7 @@ import {
 import { CursorsPresence } from "./cursors-presence";
 import {
   connectionIdToColor,
+  findInterSectingLayersWithRectangle,
   pointerEventToCanvasPoint,
   resizeBounds,
 } from "@/lib/utils";
@@ -38,6 +39,8 @@ const MAX_LAYERS = 100;
 interface CanvasProps {
   boardId: string;
 }
+
+const SELECTION_THRESHOLD = 5;
 
 const Canvas = ({ boardId }: CanvasProps) => {
   const [canvasState, setCanvasState] = useState<CanvasState>({
@@ -119,6 +122,35 @@ const Canvas = ({ boardId }: CanvasProps) => {
     [canvasState]
   );
 
+  const startMultiSelection = useCallback((current: Point, origin: Point) => {
+    if (
+      Math.abs(current.x - origin.x) + Math.abs(current.y - origin.y) >
+      SELECTION_THRESHOLD
+    ) {
+      console.log("SELE");
+      setCanvasState({ mode: CanvasMode.SelectionNet, origin, current });
+    }
+  }, []);
+
+  const updateSelectionNet = useMutation(
+    ({ setMyPresence, storage }, current: Point, origin: Point) => {
+      const layers = storage.get("layers").toImmutable();
+      setCanvasState({
+        mode: CanvasMode.SelectionNet,
+        current,
+        origin,
+      });
+      const ids = findInterSectingLayersWithRectangle(
+        layerIds,
+        layers,
+        origin,
+        current
+      );
+      setMyPresence({ selection: ids });
+    },
+    [layerIds]
+  );
+
   const unSelectLayers = useMutation(({ self, setMyPresence }) => {
     if (self.presence.selection.length > 0) {
       setMyPresence({ selection: [] }, { addToHistory: true });
@@ -130,8 +162,6 @@ const Canvas = ({ boardId }: CanvasProps) => {
       if (canvasState.mode !== CanvasMode.Translating) {
         return;
       }
-      console.log("hello");
-
       const offset = {
         x: point.x - canvasState.current.x,
         y: point.y - canvasState.current.y,
@@ -167,11 +197,12 @@ const Canvas = ({ boardId }: CanvasProps) => {
     ({ setMyPresence }, e: React.PointerEvent) => {
       e.preventDefault();
       const current = pointerEventToCanvasPoint(e, camera);
-      if (canvasState.mode === CanvasMode.Translating) {
-        console.log("canvasState.mode: ", canvasState.mode);
-        console.log("hello");
+      if (canvasState.mode === CanvasMode.Pressing) {
+        startMultiSelection(current, canvasState.origin);
+      } else if (canvasState.mode === CanvasMode.SelectionNet) {
+        updateSelectionNet(current, canvasState.origin);
+      } else if (canvasState.mode === CanvasMode.Translating) {
         translateSelectedLayer(current);
-        console.log("canvasState.mode: ", canvasState.mode);
       } else if (canvasState.mode === CanvasMode.Resizing) {
         resizeSelectedLayer(current);
       }
