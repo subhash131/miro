@@ -1,5 +1,5 @@
+"use client";
 import { useMutation, useSelf } from "@/liveblocks.config";
-import React from "react";
 
 const useDeleteLayer = () => {
   const selection = useSelf((me) => me.presence.selection);
