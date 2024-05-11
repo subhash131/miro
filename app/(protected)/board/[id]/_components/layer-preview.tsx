@@ -28,7 +28,7 @@ const LayerPreview = memo(
           />
         );
       default:
-        console.log("unknown layer type");
+        break;
     }
   }
 );
