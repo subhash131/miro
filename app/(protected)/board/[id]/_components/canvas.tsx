@@ -182,16 +182,15 @@ const Canvas = ({ boardId }: CanvasProps) => {
     [canvasState]
   );
 
-  const onWheel = useCallback((e: React.WheelEvent) => {
-    console.log({
-      x: e.deltaX,
-      y: e.deltaY,
-    });
-    setCamera((camera) => ({
-      x: (camera.x = e.deltaX),
-      y: (camera.y = e.deltaY),
-    }));
-  }, []);
+  const onWheel = useCallback(
+    (e: React.WheelEvent) => {
+      setCamera((camera) => ({
+        x: (camera.x = e.deltaX),
+        y: (camera.y = e.deltaY),
+      }));
+    },
+    [canvasState]
+  );
 
   const onPointerMove = useMutation(
     ({ setMyPresence }, e: React.PointerEvent) => {
