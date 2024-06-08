@@ -39,7 +39,7 @@ const Info = ({ boardId }: InfoProps) => {
       <Hint label="Go to dashboard" side="bottom" sideOffset={10}>
         <Button className="px-2" variant="board" asChild>
           <Link href="/dashboard">
-            <Image src="/logo.svg" alt="logo" height={40} width={40} />
+            <Image src="/logo.png" alt="logo" height={40} width={40} priority />
             <span
               className={cn(
                 "font-semibold text-xl ml-2 text-black",

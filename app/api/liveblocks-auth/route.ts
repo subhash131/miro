@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     return new Response("Unauthorized", { status: 403 });
   }
   const userInfo = {
-    name: user.firstName || "no name",
+    name: user.firstName ?? "no name",
     picture: user.imageUrl,
   };
 

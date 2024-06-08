@@ -23,7 +23,7 @@ const OrgSidebar = () => {
     <div className="hidden lg:flex flex-col space-y-6 w-[206px] pl-5 pt-5  h-full">
       <Link href="/">
         <div className="flex items-center gap-x-2">
-          <Image alt="logo" src="/logo.svg" width={60} height={60} />
+          <Image alt="logo" src="/logo.png" width={60} height={60} priority />
           <span className={cn("font-semibold text-2xl", poppins.className)}>
             Miro
           </span>
