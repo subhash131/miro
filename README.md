@@ -36,4 +36,17 @@ This is a Miro clone, a collaborative whiteboard application that allows users t
    git clone https://github.com/your-username/miro-clone.git
    cd miro-clone
 2. Install dependencies
-   ```npm install
+   ```bash
+   npm install
+3. Create .env.local
+   ```bash
+   NEXT_PUBLIC_CLERK_FRONTEND_API=your-clerk-frontend-api
+   CLERK_API_KEY=your-clerk-api-key
+   CONVEX_DEPLOY_KEY=your-convex-deploy-key
+   NEXT_PUBLIC_CONVEX_URL=your-convex-url
+   LIVEBLOCKS_PUBLIC_KEY=your-liveblocks-public-key
+4. Run the app
+   ```bash
+   npm run dev
+
+
