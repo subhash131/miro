@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Miro Clone - Collaborative Whiteboard App
+
+This is a Miro clone, a collaborative whiteboard application that allows users to create, edit, and collaborate on boards in real-time. The project is built with **Next.js**, **TypeScript**, **Liveblocks**, **Convex**, and **Clerk** for user authentication.
+
+## Features
+
+- 🖌 **Real-time collaboration**: Multiple users can create and edit boards simultaneously, with changes reflected instantly for everyone.
+- 🔒 **User Authentication**: Powered by Clerk, users can sign up, log in, and manage their profiles.
+- 📊 **Persistent Data**: Boards and user data are stored persistently using Convex as a real-time backend.
+- ⚡ **Real-time presence**: Track active users and see who is currently working on the same board using Liveblocks.
+- 🚀 **Next.js**: Frontend framework providing fast and responsive UI, server-side rendering, and API routes.
+- 💻 **TypeScript**: Strong typing and improved developer experience.
+
+## Tech Stack
+
+- **Next.js**: The frontend framework used for the UI and routing.
+- **TypeScript**: For type safety and better code maintainability.
+- **Liveblocks**: Real-time collaboration, presence, and storage management.
+- **Convex**: A real-time database and backend that stores and syncs data across users.
+- **Clerk**: Handles user authentication (sign-up, log-in, profile management, etc.).
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Node.js](https://nodejs.org/) (v16+)
+- [Clerk Account](https://clerk.dev/)
+- [Convex Account](https://convex.dev/)
+- [Liveblocks Account](https://liveblocks.io/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repo**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   git clone https://github.com/your-username/miro-clone.git
+   cd miro-clone
+2. Install dependencies
+   ```npm install
